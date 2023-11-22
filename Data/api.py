@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 
@@ -36,6 +38,18 @@ class API:
         try:
             response = requests.post(students_url, headers=self.header)
 
-            print(response.json())
+            students = json.dumps(response.json(), indent=4)
+            return students
+        except requests.exceptions.RequestException as e:
+            print("Error", e)
+
+    def get_student_by_id(self, id):
+        student_url =  f"{self.base_url}/student/{id}"
+
+        try:
+            response = requests.post(student_url, headers=self.header)
+
+            student = json.dumps(response.json(), indent=4)
+            return student
         except requests.exceptions.RequestException as e:
             print("Error", e)

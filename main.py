@@ -4,4 +4,4 @@ api = API()
 
 api.login("tnc.banh1@ad-academie.nl", "20qKy_u}5R")
 
-api.get_students()
+print(api.get_student_by_id(7))
