@@ -43,8 +43,8 @@ class API:
         except requests.exceptions.RequestException as e:
             print("Error", e)
 
-    def get_student_by_id(self, id):
-        student_url =  f"{self.base_url}/student/{id}"
+    def get_student_by_id(self, student_id):
+        student_url = f"{self.base_url}/student/{student_id}"
 
         try:
             response = requests.post(student_url, headers=self.header)
