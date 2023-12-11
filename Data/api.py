@@ -53,3 +53,28 @@ class API:
             return student
         except requests.exceptions.RequestException as e:
             print("Error", e)
+
+    def get_tags(self):
+        tags_url = f"{self.base_url}/tag"
+
+        try:
+            response = requests.post(tags_url, headers=self.header)
+
+            tags = json.dumps(response.json(), indent=4)
+            return tags
+        except requests.exceptions.RequestException as e:
+            print("Error", e)
+
+    def get_student_by_tag_id(self, tag_id):
+        tag_id_url = f"{self.base_url}/tag/{tag_id}"
+
+        try:
+            response = requests.post(tag_id_url, headers=self.header)
+
+            data = response.json()
+            tag = data.get("data", [])[0]
+            student_id = tag.get("student", None)
+            student = self.get_student_by_id(student_id)
+            return student
+        except requests.exceptions.RequestException as e:
+            print("Error", e)
